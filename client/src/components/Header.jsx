@@ -5,10 +5,12 @@ const Header = () => {
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <h1 className="font-bold test-sm sm:text-xl flex flex-wrap">
-          <span className="text-slate-500">Butwa</span>
-          <span className="text-slate-700">RealState</span>
-        </h1>
+        <Link to="/">
+          <h1 className="font-bold test-sm sm:text-xl flex flex-wrap">
+            <span className="text-slate-500">Butwa</span>
+            <span className="text-slate-700">RealState</span>
+          </h1>
+        </Link>
         <form className="bg-slate-100 p-3 rounded-lg flex items-center">
           <input
             type="text"
@@ -34,7 +36,7 @@ const Header = () => {
               Contact
             </li>
           </Link>
-          <Link to="/sign-in">
+          <Link to="/sign-up">
             <li className=" text-slate-700 hover:underline">Sign-In</li>
           </Link>
           {/* <Link to="/sign-up">
