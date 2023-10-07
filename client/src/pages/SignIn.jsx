@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signInStart,
-  signInSucess,
+  signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice.js";
 import OAuth from "../components/OAuth.jsx";
@@ -43,7 +43,7 @@ const SignIn = () => {
         // setError(data.message);
         return;
       }
-      dispatch(signInSucess(data));
+      dispatch(signInSuccess(data));
       // setLoading(false);
       // console.log(data);
       // setError(null);

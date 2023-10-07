@@ -11,6 +11,7 @@ export const test = (req, res) => {
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, "you can only update your account"));
+  console.log(errorHandler);
   try {
     if (req.body.password) {
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
@@ -27,10 +28,21 @@ export const updateUser = async (req, res, next) => {
       },
       { new: true }
     );
-    //passord destructure ->rest
+    //password destructure ->rest
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.id)
+    return next(errorHandler(401, "you can only delete your account"));
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "user has been deleted" });
+  } catch (error) {
+    next(error);
   }
 };
