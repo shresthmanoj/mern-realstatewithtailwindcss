@@ -17,6 +17,6 @@ router.post("/update/:id", verifyToken, updateListing);
 
 router.get("/get/:id", getListing);
 
-router.get("/get", getListings); //8:29.08
+router.get("/get", getListings); //8:45.11
 
 export default router;
