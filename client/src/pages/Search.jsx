@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Listingitem } from "../components/Listingitem";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   console.log(listings);
+  console.log(loading);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -192,8 +194,8 @@ const Search = () => {
               id="sort_order"
               className="border rounded-lg p-1 bg-sky-400 text-red-900"
             >
-              <option value="reqularPrice_desc">Price high to low</option>
-              <option value="reqularPrice_asc">Price low to high</option>
+              <option value="regularPrice_desc">Price high to low</option>
+              <option value="regularPrice_asc">Price low to high</option>
               <option value="createdAt_desc">Latest</option>
               <option value="createdAt_asc">Oldest</option>
             </select>
@@ -204,10 +206,28 @@ const Search = () => {
           </button>
         </form>
       </div>
-      <div className="">
+      <div className="flex-1">
         <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5 ">
           Listing results:
         </h1>
+        <div className="p-7 flex flex-wrap gap-4">
+          {/* //flex-wrap */}
+          {!loading && listings.length === 0 && (
+            <p className="text-xl text-red-500 uppercase font-semibold">
+              No listing found!
+            </p>
+          )}
+          {loading && (
+            <p className="text-xl text-slate-700 text-center w-full">
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <Listingitem key={listing._id} listing={listing} />
+            ))}
+        </div>
       </div>
     </div>
   );

@@ -18,8 +18,8 @@ import Contact from "../components/Contact";
 
 export const Listing = () => {
   SwiperCore.use([Navigation]);
-  const [listing, setlisting] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
@@ -35,7 +35,7 @@ export const Listing = () => {
           setLoading(false);
           return;
         }
-        setlisting(data);
+        setListing(data);
         setLoading(false);
         setError(false);
       } catch (error) {
@@ -62,7 +62,10 @@ export const Listing = () => {
               <SwiperSlide key={url}>
                 <div
                   className="h-[550px]"
-                  style={{ background: `url(${url}) center no-repeat` }}
+                  style={{
+                    background: `url(${url}) center no-repeat`,
+                    //backgroundSize: "cover",
+                  }}
                 ></div>
               </SwiperSlide>
             ))}
@@ -102,7 +105,7 @@ export const Listing = () => {
               </p>
               {listing.offer && (
                 <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                  ${+listing.regularPrice - +listing.discountPrice}
+                  ${+listing.regularPrice - +listing.discountPrice}OFF
                 </p>
               )}
             </div>
